@@ -1,4 +1,3 @@
-# T2DM-SNP-analysis
 # @title 📊 Genomic Risk & Clinical Analysis Dashboard {display-mode: "form"}
 import pandas as pd
 import numpy as np
@@ -171,5 +170,7 @@ html_code = """
 </body>
 </html>
 """.replace('DATA_PLACEHOLDER', dashboard_json)
+
+HTML(html_code)
 
 HTML(html_code)
