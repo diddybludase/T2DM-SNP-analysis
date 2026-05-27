@@ -1,14 +1,14 @@
 # @title 📊 Genomic Risk & Clinical Analysis Dashboard {display-mode: "form"}
-import pandas as pd
-import numpy as np
-import json
-from IPython.display import HTML
-from google.colab import output
+    import pandas as pd
+    import numpy as np
+    import json
+    from IPython.display import HTML
+    from google.colab import output
 
 # --- 1. Data Preparation ---
 # We rely on variables already in memory: df_metrics, df_dist_merged, df_genotypes_large, prs_corr
 
-def get_dashboard_data():
+    def get_dashboard_data():
     # Model Performance
     perf_data = df_metrics.to_dict(orient='records')
     
@@ -28,32 +28,32 @@ def get_dashboard_data():
         "correlations": corr_data
     }
 
-dashboard_json = json.dumps(get_dashboard_data())
+    dashboard_json = json.dumps(get_dashboard_data())
 
-def _report_js_error(message):
-    print(f"JavaScript Error: {message}")
+    def _report_js_error(message):
+        print(f"JavaScript Error: {message}")
 
-output.register_callback('report_js_error', _report_js_error)
+    output.register_callback('report_js_error', _report_js_error)
 
 # --- 2. HTML/JS/CSS Dashboard ---
-html_code = """
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 20px; }
-        .dashboard-container { display: flex; flex-direction: column; gap: 20px; }
-        .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        .kpi-card { text-align: center; }
-        .kpi-value { font-size: 24px; font-weight: bold; color: #2c3e50; margin-top: 5px; }
-        .kpi-label { font-size: 14px; color: #7f8c8d; text-transform: uppercase; }
-        .main-row { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .canvas-wrapper { position: relative; flex-grow: 1; min-height: 300px; }
-        h3 { margin-top: 0; color: #34495e; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-    </style>
+    html_code = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 20px; }
+            .dashboard-container { display: flex; flex-direction: column; gap: 20px; }
+            .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+            .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+            .kpi-card { text-align: center; }
+            .kpi-value { font-size: 24px; font-weight: bold; color: #2c3e50; margin-top: 5px; }
+            .kpi-label { font-size: 14px; color: #7f8c8d; text-transform: uppercase; }
+            .main-row { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+            .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .canvas-wrapper { position: relative; flex-grow: 1; min-height: 300px; }
+            h3 { margin-top: 0; color: #34495e; font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        </style>
 </head>
 <body>
     <div class="dashboard-container">
@@ -167,10 +167,8 @@ html_code = """
             options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
         });
     </script>
-</body>
-</html>
-""".replace('DATA_PLACEHOLDER', dashboard_json)
+    </body>
+    </html>
+    """.replace('DATA_PLACEHOLDER', dashboard_json)
 
-HTML(html_code)
-
-HTML(html_code)
+    HTML(html_code)
